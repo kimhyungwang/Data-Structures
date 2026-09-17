@@ -1,0 +1,9 @@
+.DS_Store
+**/.DS_Store
+.idea/
+.venv/
+*.dSYM/
+Binary_Search_Tree/Q*_F_BST
+Binary_Tree/Q*_E_BT
+Linked_List/Q*_A_LL
+Stack_and_Queue/Q*_C_SQ

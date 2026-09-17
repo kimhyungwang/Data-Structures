@@ -59,31 +59,40 @@ int main()
 	printf("2: Print the level-order traversal of the binary search tree;\n");
 	printf("0: Quit;\n");
 
-	while (c != 0)
-	{
-		printf("Please input your choice(1/2/0): ");
-		scanf("%d", &c);
+	insertBSTNode(&root, 20);
+	insertBSTNode(&root, 15);
+	insertBSTNode(&root, 50);
+	insertBSTNode(&root, 10);
+	insertBSTNode(&root, 18);
+	insertBSTNode(&root, 25);
+	insertBSTNode(&root, 80);
 
-		switch (c)
-		{
-		case 1:
-			printf("Input an integer that you want to insert into the Binary Search Tree: ");
-			scanf("%d", &i);
-			insertBSTNode(&root, i);
-			break;
-		case 2:
-			printf("The resulting level-order traversal of the binary search tree is: ");
-			levelOrderTraversal(root); // You need to code this function
-			printf("\n");
-			break;
-		case 0:
-			removeAll(&root);
-			break;
-		default:
-			printf("Choice unknown;\n");
-			break;
-		}
-	}
+	levelOrderTraversal(root);
+	// while (c != 0)
+	// {
+	// 	printf("Please input your choice(1/2/0): ");
+	// 	scanf("%d", &c);
+
+	// 	switch (c)
+	// 	{
+	// 	case 1:
+	// 		printf("Input an integer that you want to insert into the Binary Search Tree: ");
+	// 		scanf("%d", &i);
+	// 		insertBSTNode(&root, i);
+	// 		break;
+	// 	case 2:
+	// 		printf("The resulting level-order traversal of the binary search tree is: ");
+	// 		levelOrderTraversal(root); // You need to code this function
+	// 		printf("\n");
+	// 		break;
+	// 	case 0:
+	// 		removeAll(&root);
+	// 		break;
+	// 	default:
+	// 		printf("Choice unknown;\n");
+	// 		break;
+	// 	}
+	// }
 
 	return 0;
 }
@@ -92,8 +101,21 @@ int main()
 
 void levelOrderTraversal(BSTNode *root)
 {
+	Queue *q = malloc(sizeof(Queue));
+	q->head = NULL;
+	q->tail = NULL;
+	enqueue(&q->head, &q->tail, root);
 
-	/* add your code here */
+	while (!isEmpty(q->head))
+	{
+		root = dequeue(&q->head, &q->tail);
+		printf("%d\n", root->item);
+
+		if (root->left != NULL)
+			enqueue(&q->head, &q->tail, root->left);
+		if (root->right != NULL)
+			enqueue(&q->head, &q->tail, root->right);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
